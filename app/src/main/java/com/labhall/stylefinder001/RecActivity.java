@@ -41,8 +41,6 @@ public class RecActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     //private FirebaseDatabase urlDatabase= FirebaseDatabase.getInstance("https://stylefinder-2bf8c-default-rtdb.europe-west1.firebasedatabase.app/");
 
-
-
     int i = 0;
 
     @Override
@@ -65,9 +63,9 @@ public class RecActivity extends AppCompatActivity {
             selectedPrice = intent.getStringExtra("selectedPrice");
         }
 
+
+
         //FIREBASE DATA RETRIEVING
-
-
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
@@ -100,7 +98,6 @@ public class RecActivity extends AppCompatActivity {
             // Handle the case when the user is not logged in
             // You can redirect the user to the login screen or handle it according to your app logic
         }
-
 
 
 

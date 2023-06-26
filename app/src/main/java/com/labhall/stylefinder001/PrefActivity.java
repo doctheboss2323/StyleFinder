@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class PrefActivity extends AppCompatActivity {
     private RadioGroup radioGroupStyle;
     private RadioGroup radioGroupPrice;
-    private Button btnNext;
+    private Button btnNext,btnFav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class PrefActivity extends AppCompatActivity {
         radioGroupStyle = findViewById(R.id.radioGroupStyle);
         radioGroupPrice = findViewById(R.id.radioGroupPrice);
         btnNext = findViewById(R.id.btnNext);
+        btnFav = findViewById(R.id.btnFav);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +47,14 @@ public class PrefActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(PrefActivity.this, "Choose a price and style", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PrefActivity.this, FavActivity.class);
+                startActivity(intent);
             }
         });
     }
