@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StyleFinder001" >
         <activity
+            android:name=".RecActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrefActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true" >
             <intent-filter>

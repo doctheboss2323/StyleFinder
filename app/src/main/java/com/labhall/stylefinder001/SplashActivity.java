@@ -22,12 +22,12 @@ public class SplashActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {  //hide action bar
             getSupportActionBar().hide();}
         rotateImg();
-        new CountDownTimer(3000, 1000   ) {
+        new CountDownTimer(1000, 1000   ) {
             public void onTick(long millisUntilFinished) {
             }
             public void onFinish() {
-//                Intent intent =new Intent(SplashActivity.this,gameActivity.class);
-//                startActivity(intent);
+                Intent intent =new Intent(SplashActivity.this,LoginActivity.class);
+                startActivity(intent);
             }
         }.start();
 

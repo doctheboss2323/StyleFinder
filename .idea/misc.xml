@@ -5,6 +5,10 @@
       <map>
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/activity_rec.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/layout/login_activity.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/pref_activity.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/splash_activity.xml" value="0.1" />
       </map>
     </option>
   </component>
