@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class PrefActivity extends AppCompatActivity {
     private RadioGroup radioGroupStyle;
@@ -28,18 +29,23 @@ public class PrefActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int selectedStyleId = radioGroupStyle.getCheckedRadioButtonId();
-                RadioButton selectedStyleRadioButton = findViewById(selectedStyleId);
-                String selectedStyle = selectedStyleRadioButton.getText().toString();
 
-                int selectedPriceId = radioGroupPrice.getCheckedRadioButtonId();
-                RadioButton selectedPriceRadioButton = findViewById(selectedPriceId);
-                String selectedPrice = selectedPriceRadioButton.getText().toString();
 
-                Intent intent = new Intent(PrefActivity.this, RecActivity.class);
-                intent.putExtra("selectedStyle", selectedStyle);
-                intent.putExtra("selectedPrice", selectedPrice);
-                startActivity(intent);
+                if(radioGroupStyle.getCheckedRadioButtonId()!=-1 && radioGroupPrice.getCheckedRadioButtonId()!=-1){
+                    int selectedStyleId = radioGroupStyle.getCheckedRadioButtonId();
+                    RadioButton selectedStyleRadioButton = findViewById(selectedStyleId);
+                    String selectedStyle = selectedStyleRadioButton.getText().toString();
+
+                    int selectedPriceId = radioGroupPrice.getCheckedRadioButtonId();
+                    RadioButton selectedPriceRadioButton = findViewById(selectedPriceId);
+                    String selectedPrice = selectedPriceRadioButton.getText().toString();
+                    Intent intent = new Intent(PrefActivity.this, RecActivity.class);
+                    intent.putExtra("selectedStyle", selectedStyle);
+                    intent.putExtra("selectedPrice", selectedPrice);
+                    startActivity(intent);}
+                else{
+                    Toast.makeText(PrefActivity.this, "Choose a price and style", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
