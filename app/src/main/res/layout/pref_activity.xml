@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".Prefctivity">
+    tools:context=".PrefActivity">
 
     <TextView
         android:id="@+id/textStyle"
@@ -17,8 +17,7 @@
         android:id="@+id/radioGroupStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textStyle"
-        android:orientation="horizontal">
+        android:layout_below="@id/textStyle">
 
         <RadioButton
             android:id="@+id/radioVintage"
@@ -71,8 +70,7 @@
         android:id="@+id/radioGroupPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textPrice"
-        android:orientation="horizontal">
+        android:layout_below="@id/textPrice">
 
         <RadioButton
             android:id="@+id/radioPrice1"

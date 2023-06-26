@@ -6,7 +6,6 @@ public class Store {
     private int price;
     private String address;
     private int score;
-    private int[] images;
 
     public Store(String name, String style, int price, String address) {
         this.name = name;
@@ -14,7 +13,6 @@ public class Store {
         this.price = price;
         this.address = address;
         this.score = 0;
-        this.images = new int[5];
     }
 
     public String getName() {
@@ -55,13 +53,5 @@ public class Store {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public int[] getImages() {
-        return images;
-    }
-
-    public void setImages(int[] images) {
-        this.images = images;
     }
 }

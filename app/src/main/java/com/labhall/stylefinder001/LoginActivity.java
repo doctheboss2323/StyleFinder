@@ -76,8 +76,8 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(Task<AuthResult> task) {
                                 if (task != null && task.isSuccessful()) {
-                                    // Sign up successful, proceed to the next screen
-                                    // You can start a new activity or perform any desired actions here
+                                    Intent intent =new Intent(LoginActivity.this,PrefActivity.class);
+                                    startActivity(intent);
                                 } else {
                                     // Sign up failed, display an error message
                                     Toast.makeText(LoginActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
