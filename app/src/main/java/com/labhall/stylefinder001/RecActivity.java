@@ -5,6 +5,9 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +50,14 @@ public class RecActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rec);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            );
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
         if (getSupportActionBar() != null) {  //hide action bar
             getSupportActionBar().hide();
         }
@@ -56,6 +67,7 @@ public class RecActivity extends AppCompatActivity {
         Store[] stores = new Store[10];
 
         container = findViewById(R.id.container);
+
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -126,6 +138,7 @@ public class RecActivity extends AppCompatActivity {
 
         for (Store store : stores) {
             LinearLayout storeLayout = createStoreLayout(store);
+            storeLayout.setBackgroundColor(Color.TRANSPARENT);
             container.addView(storeLayout);
         }
     }
@@ -171,6 +184,12 @@ public class RecActivity extends AppCompatActivity {
         storeLayout.setPadding(16, 16, 16, 16);
 
         TextView nameTextView = new TextView(this);
+        LinearLayout.LayoutParams layoutParamsName = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParamsName.setMargins(0, dpToPx(32), 0, 0); // 16dp top margin
+        nameTextView.setLayoutParams(layoutParamsName);
         nameTextView.setText("Name: " + store.getName());
 
 
@@ -178,12 +197,25 @@ public class RecActivity extends AppCompatActivity {
         styleTextView.setText("Style: " + store.getStyle());
 
         TextView priceTextView = new TextView(this);
-        priceTextView.setText("Price: " + Integer.toString(store.getPrice()));
+        String price="";
+        if(store.getPrice()==1){
+            price="$";
+        }
+        if(store.getPrice()==2){
+            price="$$";
+        }
+        if(store.getPrice()==3){
+            price="$$$";
+        }
+        priceTextView.setText("Price: " + price);
 
         TextView addressTextView = new TextView(this);
         addressTextView.setText("Address: " + store.getAddress());
 
         Button addToFavoritesButton = new Button(this);
+        addToFavoritesButton.setTextSize(20);
+        addToFavoritesButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000080")));
+        addToFavoritesButton.setTextColor(Color.parseColor("#FFD700"));
         addToFavoritesButton.setText("Add to Favorites");
         addToFavoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,11 +228,13 @@ public class RecActivity extends AppCompatActivity {
             }
         });
 
-        storeLayout.addView(addToFavoritesButton);
+
+
         storeLayout.addView(nameTextView);
         storeLayout.addView(styleTextView);
         storeLayout.addView(priceTextView);
         storeLayout.addView(addressTextView);
+        storeLayout.addView(addToFavoritesButton);
 
         //Create an ImageView for each image in the store's images array
         String shop = store.getName();
@@ -284,5 +318,18 @@ public class RecActivity extends AppCompatActivity {
             Toast.makeText(this, "Shop is already in favorites", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private int dpToPx(int dp) {
+        float density = this.getResources().getDisplayMetrics().density;
+        return (int) (dp * density + 0.5f);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Apply fade animation
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
 
 }

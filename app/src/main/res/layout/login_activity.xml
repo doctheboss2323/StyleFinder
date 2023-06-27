@@ -4,34 +4,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="top"
+    android:background="@drawable/pinkfade"
+    android:fitsSystemWindows="true"
     tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/textViewEmailLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="E-mail"
+        android:textSize="12sp"
+        android:textColor="#000000"
+        android:background="@android:color/transparent"
+        android:paddingStart="8dp"
+        android:paddingEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
         android:text="001@gmail.com"
-        android:hint="Email" />
+        android:hint=""
+        android:textSize="16sp"
+        android:backgroundTint="#FFFFFF"
+        android:background="#FFFFFF"
+        android:textAllCaps="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="-8dp"
+        android:layout_marginBottom="8dp"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/textViewPasswordLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textSize="12sp"
+        android:textColor="#000000"
+        android:background="@android:color/transparent"
+        android:paddingStart="8dp"
+        android:paddingEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:background="#FFFFFF"
+        android:hint=""
         android:text="001001"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:backgroundTint="#FFFFFF"
+        android:textAllCaps="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="-8dp"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:paddingBottom="20dp"
+        android:textSize="20dp"
+        android:paddingTop="20dp"
+        android:text="Login"
+        android:backgroundTint="#000080"
+        android:textColor="#FFD700"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp" />
 
     <Button
         android:id="@+id/buttonSignUp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
         android:layout_height="wrap_content"
-        android:text="Sign Up" />
+        android:text="Sign Up"
+        android:textSize="20dp"
+        android:backgroundTint="#000080"
+        android:textColor="#FFD700"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp" />
 
 </LinearLayout>

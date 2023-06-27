@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.res.AssetManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +40,14 @@ public class FavActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fav_activity);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            );
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
         container = findViewById(R.id.container);
         mAuth = FirebaseAuth.getInstance();
         LinearLayout storeLayout;
@@ -92,7 +102,9 @@ public class FavActivity extends AppCompatActivity {
 
                     for (Store store : stores) {
                         if (favoriteStores.contains(store.getName())) {
-                            container.addView(createStoreLayout(store));
+                            LinearLayout storeLayout=createStoreLayout(store);
+                            storeLayout.setBackgroundColor(Color.TRANSPARENT);
+                            container.addView(storeLayout);
                         }
                     }
                 }
@@ -112,6 +124,7 @@ public class FavActivity extends AppCompatActivity {
         storeLayout.setPadding(16, 16, 16, 16);
 
         TextView nameTextView = new TextView(this);
+
         nameTextView.setText("Name: " + store.getName());
 
 
@@ -119,10 +132,21 @@ public class FavActivity extends AppCompatActivity {
         styleTextView.setText("Style: " + store.getStyle());
 
         TextView priceTextView = new TextView(this);
-        priceTextView.setText("Price: " + Integer.toString(store.getPrice()));
+        String price="";
+        if(store.getPrice()==1){
+            price="$";
+        }
+        if(store.getPrice()==2){
+            price="$$";
+        }
+        if(store.getPrice()==3){
+            price="$$$";
+        }
+        priceTextView.setText("Price: " + price);
 
         TextView addressTextView = new TextView(this);
         addressTextView.setText("Address: " + store.getAddress());
+
 
         storeLayout.addView(nameTextView);
         storeLayout.addView(styleTextView);
@@ -169,4 +193,11 @@ public class FavActivity extends AppCompatActivity {
 
         return storeLayout;
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Apply fade animation
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
 }

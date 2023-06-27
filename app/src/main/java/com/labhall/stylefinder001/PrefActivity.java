@@ -3,6 +3,8 @@ package com.labhall.stylefinder001;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,14 @@ public class PrefActivity extends AppCompatActivity {
         setContentView(R.layout.pref_activity);
         if (getSupportActionBar() != null) {  //hide action bar
             getSupportActionBar().hide();}
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            );
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
 
         radioGroupStyle = findViewById(R.id.radioGroupStyle);
         radioGroupPrice = findViewById(R.id.radioGroupPrice);
@@ -30,8 +40,6 @@ public class PrefActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if(radioGroupStyle.getCheckedRadioButtonId()!=-1 && radioGroupPrice.getCheckedRadioButtonId()!=-1){
                     int selectedStyleId = radioGroupStyle.getCheckedRadioButtonId();
                     RadioButton selectedStyleRadioButton = findViewById(selectedStyleId);
@@ -43,7 +51,9 @@ public class PrefActivity extends AppCompatActivity {
                     Intent intent = new Intent(PrefActivity.this, RecActivity.class);
                     intent.putExtra("selectedStyle", selectedStyle);
                     intent.putExtra("selectedPrice", selectedPrice);
-                    startActivity(intent);}
+                    startActivity(intent);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);  //fade out
+                }
                 else{
                     Toast.makeText(PrefActivity.this, "Choose a price and style", Toast.LENGTH_SHORT).show();
                 }
@@ -58,4 +68,11 @@ public class PrefActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onPause() {  //Fade in
+        super.onPause();
+        // Apply fade animation
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.labhall.stylefinder001;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +30,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            );
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
+
         if (getSupportActionBar() != null) {  //hide action bar
             getSupportActionBar().hide();}
 
@@ -52,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                                         //ADD USER PREFERENCES SAVING TO NEXT SCREEN
                                         Intent intent =new Intent(LoginActivity.this,PrefActivity.class);
                                         startActivity(intent);
+                                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                                     } else {
                                         // Login failed, display an error message
                                         Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
@@ -78,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task != null && task.isSuccessful()) {
                                     Intent intent =new Intent(LoginActivity.this,PrefActivity.class);
                                     startActivity(intent);
+                                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                                 } else {
                                     // Sign up failed, display an error message
                                     Toast.makeText(LoginActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
@@ -86,5 +99,12 @@ public class LoginActivity extends AppCompatActivity {
                         });
             }
         });
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Apply fade animation
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

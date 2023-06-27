@@ -3,20 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@drawable/pinkfade"
+    android:gravity="top"
     tools:context=".PrefActivity">
 
     <TextView
         android:id="@+id/textStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:text="Choose Style:"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <RadioGroup
         android:id="@+id/radioGroupStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_below="@id/textStyle">
 
         <RadioButton
@@ -61,15 +65,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/radioGroupStyle"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Choose Price:"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <RadioGroup
         android:id="@+id/radioGroupPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_below="@id/textPrice">
 
         <RadioButton
@@ -93,17 +98,25 @@
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/radioGroupPrice"
         android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:backgroundTint="#000080"
+        android:textColor="#FFD700"
+        android:textAllCaps="false"
         android:layout_marginTop="32dp"
         android:text="Next" />
 
     <Button
         android:id="@+id/btnFav"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:backgroundTint="#000080"
+        android:textColor="#FFD700"
+        android:textAllCaps="false"
         android:layout_below="@id/btnNext"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
